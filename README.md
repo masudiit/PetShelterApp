@@ -5,7 +5,7 @@ This application is to display if a Pet should use an umbrella based on the weat
 ## Demonstration
 #### Public API
 **Live Demo:**
- [https://npetshelterapi.herokuapp.com]( https://npetshelterapi.herokuapp.com/api/pets) <br/>
+ [https://npetshelterapi.herokuapp.com/api/pets]( https://npetshelterapi.herokuapp.com/api/pets) <br/>
 **Github:** 
 [https://github.com/masudiit/PetShelterApi](https://github.com/masudiit/PetShelterApi) <br/>
 #### Public App
