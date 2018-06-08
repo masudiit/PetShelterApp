@@ -11,7 +11,7 @@ const config = require('config');
 
 const app = express();
 
-const port = config.get('App.Port');
+const port = process.env.PORT || config.get('App.Port');
 app.use(partials());
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
