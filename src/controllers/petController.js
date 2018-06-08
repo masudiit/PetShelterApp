@@ -156,10 +156,10 @@ function petController(nav) {
     req.checkBody('breed', 'Breed can not be empty.').notEmpty();
     req.checkBody('latitude', 'Latitude can not be empty.').notEmpty();
     req.checkBody('latitude', 'Enter valid latitude.').isDecimal();
-    req.checkBody('latitude', 'Latitude must be min 4 and maximum 10').isLength({ min: 4, max: 10});
+    req.checkBody('latitude', 'Latitude must be min 4 and maximum 15').isLength({ min: 4, max: 15});
     req.checkBody('longitude', 'Longitude can not be empty.').notEmpty();
     req.checkBody('longitude', 'Enter valid Longitude.').isDecimal();
-    req.checkBody('longitude', 'Longitude must be min 4 and maximum 10').isLength({ min: 4, max: 10});
+    req.checkBody('longitude', 'Longitude must be min 4 and maximum 15').isLength({ min: 4, max: 15});
 
     const errors = req.validationErrors();
 
@@ -209,7 +209,7 @@ function petController(nav) {
                     title: 'Add New Pet',
                     errors: {},
                     duplicateErr: '',
-                    locationErr: `No valid location found for lat: ${latp} and lon: ${lonp}`,
+                    locationErr: `No valid location found for lat: ${latp} and lon: ${lonp}. \n Please enter latitude between -90 to 90 and longitude between -180 to 180. `,
                     petData: req.body
                   });
                 } catch (err) {
