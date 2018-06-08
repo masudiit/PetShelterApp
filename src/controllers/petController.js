@@ -45,7 +45,7 @@ function petController(nav) {
     return new Promise((resolve, reject) => {
       const getOptions = {
         method: 'GET',
-        uri: `${mainPath}/api/services/location/${latp}/${lonp}`,
+        uri: `${mainPath}/api/services/isvalidloc/${latp}/${lonp}`,
         json: true
       };
       request(getOptions)
