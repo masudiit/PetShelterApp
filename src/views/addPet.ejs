@@ -1,0 +1,137 @@
+<div class="container">
+          
+  
+          
+          <!--/stories-->
+
+          <form class="form-horizontal form-label-left" method="post" action="/pets">
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Name</label>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <input type="text" id="name" name="name" class="form-control" value= '<%=petData.name%>' placeholder="Name">
+            </div>
+          </div>
+
+
+          <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">Type</label>
+          <div class="col-md-4 col-sm-4 col-xs-4">
+            <select class="form-control"  id="typeCombo" name="type"  >
+              <option value="">Choose option</option> 
+              <option value="Dog">Dog</option>
+              <option value="Cat">Cat</option>
+              <option value="Other">Other</option>                           
+            </select>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Breed</label>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <select class="form-control"  id="breedCombo" name="breed"  >
+            <option value="">Choose option</option> 
+            <option value="Beogle">Beogle</option>
+            <option value="Brittany">Brittany</option>
+            <option value="Balinese">Balinese</option>     
+            <option value="Pointer">Pointer</option>   
+            <option value="Sphynx">Sphynx</option>        
+            <option value="Shiba">Shiba</option>                     
+          </select>
+        </div>
+      </div>
+          
+      <!--
+           <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Location</label>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <input type="text" class="form-control" id="location" name="location" value="" placeholder="Location">
+            </div>
+          </div>
+          -->
+        
+          
+          
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Latitude </label>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <input type="text" class="form-control"  id="latitude" name="latitude" value= '<%=petData.latitude%>' placeholder="Latitude">
+            </div>
+          </div>
+          
+          
+           <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Longitude</label>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <input type="text" class="form-control" id="longitude" name="longitude" value= '<%=petData.longitude%>' placeholder="Longitude">
+            </div>
+          </div>
+          
+          
+         
+          
+          
+          
+    
+          <div class="ln_solid"></div>
+          <div class="form-group">
+            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+            <button type="button" class="btn btn-info">  <a href="/">  Back </a></button>
+             
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+
+        </form>
+          
+
+   <div class="form-group">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-1">
+    <ul class="errors">        
+     <% if(errors){ %>
+         
+     <% for(let i=0;i<errors.length;i++){ %>
+             <li class="alert alert-danger"><%=errors[i].msg %> </li>
+         <% } %>
+     
+     <% } %>
+     
+  
+     <% if(locationErr.length >0 ){ %>          
+     <li class="alert alert-danger"><%=locationErr %> </li> 
+<% } %>
+
+<% if(duplicateErr.length >0 ){ %>          
+<li class="alert alert-danger"><%=duplicateErr %> </li> 
+<% } %>
+
+
+     </ul>
+        </div>
+ 
+
+
+
+ </div>
+          <!--/stories-->    
+
+<script>
+$(function() 
+{
+
+ function loadData()
+  {
+      document.getElementById("breedCombo").value = '<%=petData.breed%>';
+      document.getElementById("typeCombo").value = '<%=petData.type%>';
+
+  }
+
+  loadData();
+});
+  </script>
+
+ 
+
+  </div>
+  

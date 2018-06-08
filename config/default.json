@@ -1,0 +1,15 @@
+{
+  "App" : {
+        "Port" :"9000"
+     },
+  "ApiServer" :
+  {
+        "Url" : "http://localhost:5000"    
+  },
+  "DarkSky": {
+      "ApiKey" : "52e277612fecd8c703e644cfbdeb4d3c"
+  }
+
+
+
+}

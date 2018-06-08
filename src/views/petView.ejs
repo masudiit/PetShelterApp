@@ -1,0 +1,170 @@
+<div class="container">
+
+   <div class="row">
+      <div class="col-md-6">
+         <div class="panel">
+            <div class="panel-body"> 
+               <h3> Latitude : Longitude (<%=latp%>  : <%=lonp%> ) </h3>
+                <div id="map" style="width:100%;height:500px"></div>
+          </div>
+        </div>
+       </div>
+
+
+    <div class="col-md-6">
+    
+
+
+    <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>             
+            </tr>
+          </thead>
+          <tbody>
+        
+            <tr>
+             
+              <td> <h3> Location: </h3></td>
+              <td><h3 id="weather-location"></h3></td>
+              <td></td>
+              
+             
+            </tr>
+         
+            <tr>
+             
+            <td><h3> Weather: </h3></td>
+            <td> <canvas id="icon" width="128" height="128"> </canvas> </td>
+            <td><h3 id="weather"></h3></td>
+            
+           
+          </tr>
+
+          <tr>
+             
+          <td><h3> Umbrella ?: </h3></td>
+          <td><h3 id="umbrella"></h3> </td>
+          <td></td>
+                  
+        </tr>
+
+         <tr>
+         <td></td>
+         <td> <button type="button" class="btn btn-info">  <a href="/">  Back </a></button></td>
+         
+         <td></td>
+         </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+ </div>
+
+
+
+
+</div>
+
+
+
+<script>
+
+
+function myMap()
+{
+
+var lat =parseFloat(<%=latp%>);
+var lon =parseFloat(<%=lonp%>);
+
+console.log(lat );
+console.log(lon );
+ var myCenter = new google.maps.LatLng(lat,lon);
+ var mapCanvas = document.getElementById("map");
+ var mapOptions = {center: myCenter, zoom: 16};
+ var map = new google.maps.Map(mapCanvas, mapOptions);
+ var marker = new google.maps.Marker({position:myCenter});
+ marker.setMap(map);
+
+
+}
+
+</script>
+
+
+<script>
+$(function() 
+{
+
+
+    function showIcon()
+    {  
+        
+    var str ="<%= icon %>" ;
+    var data =str.replace(/&#34;/g,'' );
+    
+    var strW ="<%=weather%>" ;
+    var dataW =strW.replace(/&#34;/g,'' );
+    $('#weather').text(dataW);
+
+     if(dataW==='rain')
+     $('#umbrella').text('Yes');
+     else
+     $('#umbrella').text('No');
+       // console.log(data);
+
+      /*
+
+        var  list  = [
+          "clear-day", "clear-night", "partly-cloudy-day",
+          "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+          "fog"
+        ];
+        */
+
+       var skycons = new Skycons({"color": "pink"});
+       skycons.add(document.getElementById("icon"), data);
+        skycons.play();
+    
+    }
+  
+
+function locationTracker()
+{ 
+    
+var lat =parseFloat(<%=latp%>);
+var long =parseFloat(<%=lonp%>);
+
+    var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ lat + "," + long;
+
+    $.getJSON(url, function(data) {
+        var arr_address_comp = data.results[0].address_components;
+        arr_address_comp.forEach(function(val) {
+            
+           if(val.types[0] === "locality" ){
+              cityName = val.long_name;
+           }
+           if(val.types[0] === "country" ){
+              countryCode = val.short_name;
+              countryName = val.long_name;
+           }
+        });
+
+        
+        //set your tag element where you will describethe location
+        $('#weather-location').text(cityName + ", " + countryName);
+     });
+
+}
+
+
+//myMap();
+showIcon();
+locationTracker();
+});
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoyklParPka6RibVgZk4OsvkrOfafag2o&callback=myMap"></script>
+<script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
